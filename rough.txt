@@ -1,0 +1,258 @@
+    //     mysqli_select_db("library");
+//    if(isset($_POST['submit'])){
+//     $name = $_POST['name'];
+//     $password1 = $_POST['pass1'];
+// 	$password2 = $_POST['pass2'];
+// 	error_reporting(0);
+// 	$sex=$_POST['sex'];
+// 	$id = $_POST['id'];
+// 	error_reporting(0);
+// 	$check=$_POST['con'];
+	
+// 	if($name==''){
+// 	echo "<script>alert('Please enter your name!')</script>";
+// 	exit();
+//    }
+   
+//    if($password1==''){
+// 	echo "<script>alert('Please enter your password1!')</script>";
+// 	exit();
+//    }
+   
+//    if($id==''){
+// 	echo "<script>alert('Please enter your Roll no!')</script>";
+// 	exit();
+//    }
+//    if($sex==''){
+// 	echo "<script>alert('Please select your Gender!')</script>";
+// 	exit();
+//    }
+//    if(empty($check)){
+//    echo"<script>alert('Please agree the terms to continue')</script>";
+//    }else{
+//     if($password1==$password2)
+//    {
+//      $que=mysql_query("SELECT * FROM  `user` WHERE  `rno` LIKE  '$id'");
+// 	 $res=mysql_num_rows($que);
+// 	 if($res==1){
+//    echo"<script>alert('Already Registered')</script>";
+// 	 exit();
+   
+//    }else{
+//    $query = "INSERT INTO  `library`.`user` (`id` ,`name` ,`rno` ,`pass` ,`gender`)VALUES ('1' ,  '$name',  '$id',  '$password1',  '$sex')";
+// 	if(mysql_query($query))
+//         echo "Data sent";
+// 	//  header("Location:thank.html");
+//    } }
+//    else{
+//     echo "<script>alert('Password not match')</script>";
+//      exit();
+//    }
+//  }  }
+   
+   
+?>
+
+
+
+
+
+
+// $_SESSION["user2"]="YES";
+// $_SESSION["user2"]=$_POST["user2"];
+// $page="Location:adminhomepage.php";
+// header($page);
+
+
+
+
+
+
+<!-- <?php
+session_start();
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Library System</title>
+<style>
+body {
+    background-image: url("library.jpg"); 
+	background-size: cover;
+    background-repeat: no-repeat;
+}
+h1 {
+    font-family: Gill Sans, Verdana;
+	font-size: 60px;
+	color: white;
+}
+p{
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+}
+#header {
+    color:white;
+    text-align:left;
+	padding: 5px;
+}
+
+#footer {
+    color:black;
+    clear:both;
+    text-align:center;
+    padding:5px;
+    margin-top: 30px;	
+}
+#span{
+    color:red;
+}
+</style>
+</head>
+<body>
+<div id="header">
+<pre><h1>
+    <!-- <img src="images\librarysymbol.gif" alt="Logo"style="float:left;width:100px;height:100px;border-radius: 20px 20px 20px 20px;"> -->
+     Library System</h1></pre>
+</div>
+<div style="background-color:white; color:black; padding:20px;margin-left:175px;margin-top:20px; width:450px; height: 525px;border-radius: 20px 20px 20px 20px;">
+
+<p style="color:black;text-align:center;font-size: 30px"><b>Create your Library Account</b></p>
+<pre><form id='register' action='registration.php' method='post' accept-charset='UTF-8' style="font-size:20px;color:black">
+<input type='hidden' name='submitted' id='submitted' value='1'/>
+<label for='name' >Your Full Name <span style='color:red;'>*</span>  : </label><input type='text' name='name'  style="height: 22px;font-size: 18px;"/><br>
+<label for='gender'>Gender<span style='color:red;'>*</span>          : </label><input type="radio" name="sex" value="male">Male <input type="radio" name="sex" value="female">Female<br>
+<label for='username' >Roll No<span style='color:red;'>*</span>          : </label><input type='text' name='id'   style="height: 22px;font-size: 18px;"/><br>
+<label for='password' >Password<span style='color:red;'>*</span>        : </label><input type='password' name='pass1'  style="height: 22px;font-size: 18px;"/><br>
+<label for='password' >Confirm Password<span style='color:red;'>*</span>: </label><input type='password' name='pass2'   style="height: 22px;font-size: 18px;"/><br>
+<pre style="color:black;font-size: 16px;font-family: 'Open Sans', Arial, Helvetica, sans-serif;"><input type="checkbox" name="con" value="Bike"><b> I agree to the Library Terms of Service and Privacy Policy</b><br></pre>
+<input type='submit' name='submit' value="Submit"  style="border-style: none; background-color:black; no-repeat; width: 111px; height: 30px;float:right; color:white;"/>
+</form>
+</div>
+
+</body>
+
+</html>
+<?php
+    // require once ?
+    require('db_connection.php');
+    // mysqli_connect("localhost","root","","library");
+    if(isset($_REQUEST['name'])){
+        $name = stripslashes($_REQUEST['name']);
+        $name = mysqli_real_escape_string($db, $name);
+    
+        $sex = stripslashes($_REQUEST['sex']);
+        $sex = mysqli_real_escape_string($db, $sex);
+
+        $id = stripslashes($_REQUEST['id']);
+        $id = mysqli_real_escape_string($db, $id);
+
+        $password1 = stripslashes($_REQUEST['pass1']);
+        $password1 = mysqli_real_escape_string($db, $password1);
+
+        $password2 = stripslashes($_REQUEST['pass2']);
+        $password2 = mysqli_real_escape_string($db, $password2);
+    
+    }
+
+    $idNo = 3;
+
+    $query = "INSERT INTO  `library`.`user` (`id` ,`name` ,`rno` ,`pass` ,`gender`)VALUES ('$idNo',  '$name',  '$id',  '$password1',  '$sex')";
+    $result = mysqli_query($db, $query);
+    if($result){
+        echo "Data sent";
+    } 
+    
+     -->
+
+
+
+
+
+
+     <?php
+session_start();
+
+include("db_connection.php");
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Library System</title>
+<style>
+body {
+    background-image: url("library.jpg"); 
+	background-size: cover;
+    background-repeat: no-repeat;
+}
+h1 {
+    font-family: Gill Sans, Verdana;
+	font-size: 60px;
+	color:white;
+}
+p{
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+}
+#header {
+    /* background-color:white; */
+    color:white;
+    text-align:left;
+	padding: 5px;
+}
+
+#footer {
+    color:black;
+    clear:both;
+    text-align:center;
+    padding:5px;
+    margin-top: 30px;	
+}
+
+</style>
+</head>
+<body>
+<div id="header">
+<pre><h1>
+    <!-- <img src="images\librarysymbol.gif" alt="Logo"  style="float:left;width:100px;height:100px;border-radius: 20px 20px 20px 20px;">  -->
+    Library System</h1></pre>
+</div>
+<div style="background-color:white; color:black; padding:20px;margin-left:200px;margin-top:20px; width:500px; height: 400px;border-radius: 20px 20px 20px 20px;">
+
+<p style="color:black;text-align:center;font-size: 30px"><b>LOGIN</b></p>
+<p style="color:black;text-align:center;font-size: 24px">Sign in to continue to Library</p>
+<pre><form name="input" method="post" style="font-size:24px;color:black">
+  USERNAME : <input type="text" name="user2" style="height: 28px;font-size: 24px;"><br>
+  PASSWORD : <input type="password" name="pwd" style="height: 28px;font-size: 24px;"><br><br>
+<input type="submit" value="Submit" name="login" style="border-style: none; background-color: black; no-repeat; width: 134px; height: 53px;float:right; color: white;">
+</form>
+</div>
+<div id="footer">
+</div>
+
+</body>
+
+</html>
+
+<?php
+require('db_connection.php');
+mysqli_connect("localhost","root","","library");
+
+if(isset($_POST['login'])){
+
+$password = $_POST['pwd'];
+$uid = $_POST['user2'];
+
+$check_user = "SELECT * FROM  `user` WHERE  `rno` LIKE  '$uid' AND  `pass` LIKE  '$password'";
+$run = mysqli_query($db, $check_user);
+$count=mysqli_num_rows($run);
+if($count==1){
+echo "Logged IN";
+exit();
+}
+else{
+echo "<script>alert('Email or password is incorrect!')</script>";
+}}
